@@ -439,6 +439,48 @@ function updateRoster() {
     list.appendChild(createMemberElem(username + " (You)", 'online', userBio, true));
     names.forEach(n => list.appendChild(createMemberElem(n, presenceRoster[n].status, presenceRoster[n].bio, false)));
 }
+function renderMessage(sender, data, isSelf, date = new Date()) {
+    // 🛑 FIX: Agar data khali hai ya content nahi hai, toh print hi mat karo
+    if (!data || !data.content) {
+        return; 
+    }
+
+    const area = document.getElementById("messagesArea");
+    const div = document.createElement("div");
+    div.className = `message ${isSelf ? "sent" : "received"}`;
+    
+    const senderBio = isSelf ? userBio : (presenceRoster[sender]?.bio || "Student at College");
+    
+    let content = "";
+    
+    // Check 1: Agar Text hai
+    if (data.type === 'text') {
+        content = `<div>${isSelf ? '' : `<b>${sender}:</b> `}${data.content}</div>`;
+    } 
+    // Check 2: Agar Image hai (Sirf tabhi dikhao jab type 'image' ho)
+    else if (data.type === 'image') {
+        content = `<img src="${data.content}" class="chat-img" 
+                   onerror="this.style.display='none'" 
+                   onclick="window.open(this.src)">`;
+    } 
+    // Agar na text hai na image (garbage data), toh function yahin rok do
+    else {
+        return;
+    }
+
+    div.innerHTML = `
+        <div class="message-avatar-container">
+            <div class="user-avatar msg-mini-avatar">${sender.substring(0,2).toUpperCase()}</div>
+            <div class="bio-tooltip">${senderBio}</div>
+        </div>
+        <div class="message-content">
+            ${content}
+            <div class="message-time">${date.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>
+        </div>`;
+    
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+}
 function createMemberElem(name, status, bio, isSelf) {
     const li = document.createElement("li");
     li.className = "roster-member";
