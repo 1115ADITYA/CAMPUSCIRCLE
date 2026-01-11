@@ -43,7 +43,7 @@ Follow these steps to run the project locally:
 1. Clone the Repository
 Bash
 
-git clone https://github.com/your-username/campus-circle.git
+git clone https://github.com/1115ADITYA/CAMPUSCIRCLE.git
 cd campus-circle
 2. Install Dependencies
 Bash
@@ -55,7 +55,7 @@ Create a .env file in the root directory and add the following keys:
 Code snippet
 
 # Database Configuration
-MONGO_URI=xyz
+MONGO_URI=xyz(make ur own and try)
 
 # Authentication Secret
 JWT_SECRET=YourSuperSecretKeyHere
