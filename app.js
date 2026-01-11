@@ -149,7 +149,13 @@ const userSchema = mongoose.Schema({
 });
 const userModel = mongoose.model("user", userSchema);
 
-/* --- Start Server --- */
-app.listen(3000, () => {
-    console.log("✅ Server running at http://localhost:3000");
-});
+
+
+if (require.main === module) {
+    app.listen(3000, () => {
+        console.log("✅ Server running locally on port 3000");
+    });
+}
+
+// Vercel ke liye app ko export karna zaroori hai
+module.exports = app;
