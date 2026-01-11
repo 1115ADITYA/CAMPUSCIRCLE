@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 
 const app = express();
-mongoose.connect("mongodb://localhost:27017/user");
+mongoose.connect("xyz");
 const ABLY_API_KEY = "XYZ"; 
 
 const API_KEY ="XYZ"; 
@@ -184,5 +184,6 @@ app.get('/token', async (req, res) => {
 app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
+
 
 
