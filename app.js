@@ -79,7 +79,7 @@ app.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.redirect("/login?error=wrongpassword");
 
-    let token = jwt.sign({ email: user.email }, "defaultSecret");
+    let token = jwt.sign({ email: user.email }, "xyzz");
     res.cookie("token", token);
     res.sendFile("public/chatting.html", { root: __dirname });
 });
@@ -184,6 +184,7 @@ app.get('/token', async (req, res) => {
 app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
+
 
 
 
