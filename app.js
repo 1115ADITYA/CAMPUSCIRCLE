@@ -11,7 +11,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-
+// 2. Database Connection (Ab .env se lega)
+// Agar .env mein nahi mila, toh backup ke liye hardcoded URL use karega
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/user";
 
 mongoose.connect(mongoURI)
@@ -149,13 +150,7 @@ const userSchema = mongoose.Schema({
 });
 const userModel = mongoose.model("user", userSchema);
 
-
-
-if (require.main === module) {
-    app.listen(3000, () => {
-        console.log("✅ Server running locally on port 3000");
-    });
-}
-
-// Vercel ke liye app ko export karna zaroori hai
-module.exports = app;
+/* --- Start Server --- */
+app.listen(3000, () => {
+    console.log("✅ Server running at http://localhost:3000");
+});
