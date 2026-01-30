@@ -72,4 +72,4 @@ node index.js
 # or
 nodemon index.js
 5. Access the App
-Open your browser and go to: http://localhost:3000
+Open your browser and go to:https://campuscircle-mauve.vercel.app/
